@@ -1,1 +1,74 @@
-<p>cover-letter works!</p>
+<main>
+  <div class="container-fluid pl-4 pr-4">
+    <div class="card mb-4">
+      <div class="card-header bg-dark">
+        <h5 class="card-title text-white mb-0">Create a Cover Letter</h5>
+      </div>
+      <div class="card-body">
+        In this website, you will be able to quickly create a cover letter that can be tailored to a specific company.
+        Get started by adding <code>{{ "{ COMPANY }"}}</code> into text field below.
+      </div>
+    </div>
+
+    <div class="row m-0">
+      <div class="col-lg-3 col-xl-2 d-flex align-items-stretch p-0 m-0">
+        <div class="card w-100">
+          <div class="card-header">
+            <div class="display-5 d-flex justify-content-center">History</div>
+          </div>
+          <div class="card-body">
+            <p>
+              You currently have no cover letters saved locally . . .
+            </p>
+            <button class="btn btn-primary btn-block">Save</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-xl-10 m-0 p-0">
+        <div class="row m-0">
+          <div class="col p-0 d-flex align-items-stretch">
+            <div class="card w-100">
+              <div class="card-header d-flex justify-content-center">
+                Original Text
+              </div>
+              <div class="card-body p-0">
+                <div class="input-group">
+              <textarea type="text" class="form-control" placeholder="Paste in your cover letter here. . ."
+                        style="min-height: 500px; border: 0px" [(ngModel)]="originalText"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col p-0 d-flex align-items-stretch">
+            <div class="card d-flex w-100">
+              <div class="card-header d-flex justify-content-center">
+                Generated Text
+              </div>
+              <div class="card-body p-0">
+                <div class="input-group">
+                <p>{{ fields }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <label for="example1">Company:</label>
+            <div class="input-group">
+              <textarea id="example1" type="text" class="form-control" placeholder="Type here. . ." ></textarea>
+            </div>
+          </li>
+
+          <li class="list-group-item">
+            <label for="example2">Name</label>
+            <div class="input-group">
+              <textarea id="example2" type="text" class="form-control" placeholder="Type here. . ."></textarea>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>

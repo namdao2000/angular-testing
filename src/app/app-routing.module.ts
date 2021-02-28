@@ -4,8 +4,13 @@ import {LoginComponent} from './login/login.component';
 import {SshComponent} from './ssh/ssh.component';
 import {AuthenticatedGuard} from './guards/authenticated.guard';
 import {CoverLetterComponent} from './cover-letter/cover-letter.component';
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -19,7 +24,6 @@ const routes: Routes = [
     path: 'cover-letter',
     component: CoverLetterComponent
   }
-
 ];
 
 @NgModule({
