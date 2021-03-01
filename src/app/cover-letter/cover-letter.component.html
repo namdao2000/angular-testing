@@ -1,74 +1,202 @@
-<main>
+<main class="mt-4">
   <div class="container-fluid pl-4 pr-4">
     <div class="card mb-4">
-      <div class="card-header bg-dark">
+      <div class="card-header bg-dark d-flex justify-content-center">
         <h5 class="card-title text-white mb-0">Create a Cover Letter</h5>
       </div>
       <div class="card-body">
-        In this website, you will be able to quickly create a cover letter that can be tailored to a specific company.
-        Get started by adding <code>{{ "{ COMPANY }"}}</code> into text field below.
+        <p class="mb-0">
+          Are you tired of manually modifying and tailoring the same cover letter for all the different
+          companies? {{ '\n' }}
+          Start building a flexible cover letter now! Get started by putting in your cover letter and replacing any of
+          the modifiable section with
+          something like
+          <code>{{ "{COMPANY}" }}</code> or <code>{{ "{MY EXPERIENCE}"}}</code> and edit it from below.
+        </p>
+
       </div>
     </div>
 
     <div class="row m-0">
-      <div class="col-lg-3 col-xl-2 d-flex align-items-stretch p-0 m-0">
-        <div class="card w-100">
-          <div class="card-header">
-            <div class="display-5 d-flex justify-content-center">History</div>
+      <div class="col-lg-3 col-xl-2 pl-0 pr-2 m-0" style="max-height: 600px;">
+        <div class="card mb-4" style="height: 55%">
+          <div class="card-header bg-dark">
+            <h5 class="mb-0 d-flex justify-content-center text-white">Local Saves</h5>
           </div>
-          <div class="card-body">
-            <p>
-              You currently have no cover letters saved locally . . .
+          <div class="card-body px-0 pt-2 pb-0">
+            <p class="mx-2" *ngIf="!files || files.length < 1">
+              No saves found. Restart your browser to generate an example Investment Banking cover letter template.
             </p>
-            <button class="btn btn-primary btn-block">Save</button>
+
+            <div *ngIf="!!files && files.length > 0" style="max-height: 100%; overflow-y: auto">
+              <ul class="list-group-flush list-group">
+                <li *ngFor="let file of files; let i = index" class="file list-group-item d-flex align-content-center"
+                    (click)="currentLoadFileIndex = i">
+                  <div class="d-flex align-items-center" data-toggle="modal" data-target="#load-event"
+                       style="margin: -12px; width: 98%">
+                    <div class="pl-2">
+                        {{ file.name }}
+                    </div>
+                  </div>
+                  <button type="button" class="close ml-auto" (click)="currentDeleteFileIndex = i" data-toggle="modal"
+                          data-target="#delete-event">&times;
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
+
+        <div class="card" style="height: 43%">
+          <div class="card-header bg-dark text-white d-flex justify-content-center">
+            <h5 class="mb-0">
+              Edit File
+            </h5>
+          </div>
+          <div class="card-body">
+            <div style="max-height: 30%; height: 30%; overflow-y: auto">
+              Editing: {{ saveForm.controls.filename.value }}
+            </div>
+            <ul class="list-group" style="height: 70%;">
+              <li class="list-group-item border-0 px-0">
+                <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#save-event">Save
+                </button>
+              </li>
+              <li class="list-group-item border-0 px-0">
+                <button class="btn btn-info btn-block" (click)="export()">Export to...
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
       </div>
-      <div class="col-lg-9 col-xl-10 m-0 p-0">
+      <div class="col-lg-9 col-xl-10 m-0 pr-0">
         <div class="row m-0">
           <div class="col p-0 d-flex align-items-stretch">
             <div class="card w-100">
               <div class="card-header d-flex justify-content-center">
-                Original Text
+                <h5 class="mb-0">
+                  Original Text
+                </h5>
               </div>
               <div class="card-body p-0">
                 <div class="input-group">
-              <textarea type="text" class="form-control" placeholder="Paste in your cover letter here. . ."
-                        style="min-height: 500px; border: 0px" [(ngModel)]="originalText"></textarea>
                 </div>
+                <textarea type="text" class="form-control" placeholder="Paste in your cover letter here. . ."
+                          style="max-height: 60vh; min-height: 60vh; border: 0px" [(ngModel)]="originalText"></textarea>
               </div>
             </div>
           </div>
           <div class="col p-0 d-flex align-items-stretch">
             <div class="card d-flex w-100">
-              <div class="card-header d-flex justify-content-center">
-                Generated Text
+              <div class="card-header d-flex align-items-center">
+                <h5 class="mb-0 mx-auto">
+                  Generated Text
+                </h5>
+                <button *ngIf="!!generatedText && generatedText.length > 0" class="btn btn-primary btn-sm mr-2"
+                        style="right: .5em; position: absolute" (click)="copyToClipBoard()">Copy To Clipboard
+                </button>
               </div>
-              <div class="card-body p-0">
-                <div class="input-group">
-                <p>{{ fields }}</p>
-                </div>
+              <div class="card-body"
+                   style="padding-left: 12px; padding-top: 6px; padding-right: 12px; padding-bottom: 6; overflow-y: auto; height: 50vh">
+                <p> {{ generatedText }} </p>
               </div>
             </div>
           </div>
         </div>
-        <ul class="list-group">
 
-          <li class="list-group-item">
-            <label for="example1">Company:</label>
-            <div class="input-group">
-              <textarea id="example1" type="text" class="form-control" placeholder="Type here. . ." ></textarea>
+        <div class="card " style="min-height: 10vh;">
+          <div class="card-body row">
+            <div class="pl-1" *ngIf="!this.fields || this.fields.length ===0">
+              No field to edit down here . . . 😛 <br>
+              Get started by adding something like <code>{{ "{POSITION}"}}</code>
             </div>
-          </li>
-
-          <li class="list-group-item">
-            <label for="example2">Name</label>
-            <div class="input-group">
-              <textarea id="example2" type="text" class="form-control" placeholder="Type here. . ."></textarea>
+            <div *ngFor="let field of fields" class="col-4 mb-2">
+              <label [for]="field + '-field'"> {{ field }}:</label>
+              <div class="input-group">
+                <textarea [id]="field + '-field'" type="text" class="form-control" (input)="generateText()"
+                          [(ngModel)]="inputData[field]"
+                          placeholder="Type here. . ."></textarea>
+              </div>
             </div>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </main>
+
+<div class="modal fade" id="save-event" tabindex="-1" role="dialog" data-backdrop="false"
+     style="background: rgba(0, 0, 0, 0.5)">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form [formGroup]="saveForm" (ngSubmit)="saveAll()">
+        <div class="modal-header">
+          <h5 class="modal-title mb-0">Save the file to your browser</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <label for="file-name">File name:</label>
+          <div class="input-group">
+            <input class="text" id="file-name" formControlName="filename" class="form-control"
+                   placeholder="e.g. Deloitte"
+                   [ngClass]="{ 'is-valid' : saveForm.controls.filename.valid && (saveForm.controls.filename.touched || saveForm.controls.filename.dirty) ,
+                                'is-invalid' :  saveForm.controls.filename.invalid && (saveForm.controls.filename.touched || saveForm.controls.filename.dirty)} ">
+            <div *ngIf="saveForm.controls.filename.invalid" class="invalid-feedback">
+              Please provide a file name.
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit">Save</button>
+          <button class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="load-event" tabindex="-1" role="dialog" data-backdrop="false"
+     style="background: rgba(0, 0, 0, 0.5)">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mb-0">Load saved file</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to load this file? <br>
+          This will erase your current progress.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="currentFile = files[currentLoadFileIndex]; load(currentLoadFileIndex)"
+                data-dismiss="modal">Load
+        </button>
+        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="delete-event" tabindex="-1" role="dialog" data-backdrop="false"
+     style="background: rgba(0, 0, 0, 0.5)">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mb-0">Delete file</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this file from the local storage?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" (click)="remove(currentDeleteFileIndex)" data-dismiss="modal">Delete</button>
+        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

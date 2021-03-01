@@ -17,6 +17,7 @@ export class SshComponent implements OnInit, AfterViewInit {
       this.term.open(this.terminal.nativeElement);
       this.term.writeln('Welcome to the super secret and cool terminal.');
       this.term.writeln('We hope you have a wonderful day sir!');
+      this.term.writeln('And you betcha im currently working on it. So far this page is useless.');
     });
   }
 

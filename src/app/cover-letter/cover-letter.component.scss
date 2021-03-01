@@ -2,6 +2,26 @@ code {
   background: lightgrey;
 }
 
-li {
-  border: 0px;
+p {
+  white-space: pre-line;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+/*This is modifying the btn-file colors but you could create your own .btn-something class as well*/
+li.file:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+}
+
+.file {
+  padding-right: 10px;
 }
