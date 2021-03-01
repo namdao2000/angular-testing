@@ -12,7 +12,7 @@ export const COVER_LETTER_EXAMPLE_1 = `// This is an example cover letter provid
 
 Dear Mr. / Ms. {Recruiter’s Name},
 
-My name is {Your Name} and I am currently {a Year in School and Major / Business School Student at {School Name} / {Working at Company Name in Division Name}. I was recently introduced to your firm via {Friend / Contact at Firm / Presentation} and was impressed with what I learned of {Your Culture / Working Environment / Bank-Specific Info.}. I am interested in pursuing an [Investment Banking Analyst / Associate] position at your firm, and have enclosed my resume and background information below.
+My name is {Your Name} and I am currently {a Year in School and Major / Business School Student at {School Name} / {Working at Company Name in Division Name}. I was recently introduced to your firm via {Friend / Contact at Firm / Presentation} and was impressed with what I learned of {Your Culture / Working Environment / Bank-Specific Info.}. I am interested in pursuing an {Investment Banking Analyst / Associate} position at your firm, and have enclosed my resume and background information below.
 
 I have previously {Completed Internships In… / Worked Full-Time In…}. Through this experience {Working on Transactions / Leading Teams and Managing Projects / Performing Quantitative Analysis}, I have gained {Go Into Anything Relevant to Banking, Such As Analytical / Leadership / Teamwork / Finance / Accounting} skills and honed my {Any Other Relevant Skills}. I also had the opportunity to work on {High-Impact Project}, which {Describe Results}.
 
