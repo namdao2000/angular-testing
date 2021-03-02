@@ -149,7 +149,7 @@ export class CoverLetterComponent implements OnInit {
   public load(index: number): void {
     const file = this.files[index];
     this.originalText = file.text;
-    this.inputData = file.inputData;
+    this.inputData = {...file.inputData};
     this.saveForm.controls.filename.setValue(file.name);
     this.currentLoadFileIndex = 0;
     this.generateText();
